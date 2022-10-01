@@ -85,7 +85,6 @@
   }
 
   //Parameter passed from button (Parameter same as category) 
-
   function filterProduct(value){
     //Button class code
     let buttons = document.querySelectorAll(".button-value");
@@ -104,7 +103,7 @@
     //loop through all cards 
     elements.forEach((element) =>{
         //Display all cards on "all" button click 
-        if(value == "All"){
+        if(value == "all"){
             element.classList.remove("hide");
         }else{
             //Check if element contains category class
@@ -118,6 +117,26 @@
         }
     })
   }
+
+  //Search button click 
+  document.getElementById("search").addEventListener("click",() => {
+    //Initializations
+    let searchInput = document.getElementById("search-input").value;
+    let elements = document.querySelectorAll(".product-name");
+    let cards = document.querySelectorAll(".card");
+
+    elements.forEach((element,index) => {
+        //check if text includes the search value
+        if(element.innerText.includes(searchInput.toUpperCase())){
+            //Display matching card
+            cards[index].classList.remove("hide")
+        }else {
+            //hide other 
+            cards[index].classList.add("hide")
+        }
+    })
+  })
+
 
   //Initially display all Products
 
