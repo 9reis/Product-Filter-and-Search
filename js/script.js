@@ -55,7 +55,7 @@
     //Create Cart
     let card = document.createElement("div")
     //Carc should have category and should stay hidden initially
-    card.classList.add("card","i.category","hide");
+    card.classList.add("card", i.category,"hide");
     //image div
     let imgContainer = document.createElement("div");
     imgContainer.classList.add("image-container");
@@ -80,12 +80,49 @@
     price.innerText = "$ " + i.price;
     container.appendChild(price)
 
-
-
-
-
     card.appendChild(container);
     document.getElementById("products").appendChild(card);
+  }
+
+  //Parameter passed from button (Parameter same as category) 
+
+  function filterProduct(value){
+    //Button class code
+    let buttons = document.querySelectorAll(".button-value");
+
+    buttons.forEach((button)=>{
+        //Check if values iquals innerText
+        if(value.toUpperCase() == button.innerText.toUpperCase()){
+            button.classList.add("active");
+        }else {
+            button.classList.remove("active");
+        }
+    })
+
+    //Select all cards 
+    let elements = document.querySelectorAll('.card');
+    //loop through all cards 
+    elements.forEach((element) =>{
+        //Display all cards on "all" button click 
+        if(value == "All"){
+            element.classList.remove("hide");
+        }else{
+            //Check if element contains category class
+            if(element.classList.contains(value)){
+                //display element based on category
+                element.classList.remove('hide');
+            }else{
+                //hide otger elements
+                element.classList.add("hide")
+            }
+        }
+    })
+  }
+
+  //Initially display all Products
+
+  window.onload = () =>{
+    filterProduct('all')
   }
 
 
